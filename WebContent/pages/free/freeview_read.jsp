@@ -172,8 +172,14 @@
 									<span class="input-group-addon">@ 메시지</span>
 									<textarea rows="8" cols="50" class="form-control"
 										placeholder="Message" name="msg_txt" required="required"></textarea>
+									<%
+										if (loginUser != null) {
+									%>
 									<input type="hidden" name="sender"
 										value="<%=loginUser.getMe_id()%>" />
+									<%
+										}
+									%>
 								</div>
 							</div>
 							<div class="modal-footer">
@@ -198,19 +204,28 @@
 						<div class="kboard-detail">
 							<div class="detail-attr detail-writer">
 								<div class="detail-name">작성자</div>
-								<div class="detail-value">
+								<div>
 									<%
 										if (loginUser != null && !loginUser.getMe_id().equals(post.getMe_id())) {
 									%>
 									<a href="#infoModal" data-toggle="modal"
-										data-target="#infoModal"> <%
- 	}
- %> <%=post.getMe_id()%></a>
+										data-target="#infoModal">
+										 <%
+										 }
+										 %> <%=post.getMe_id()%></a>
+
+
+									<%
+										if (loginUser != null && !loginUser.getMe_id().equals(post.getMe_id())) {
+									%>
+									<a href="#" data-toggle="modal"
+										data-target="#MessageModal<%=post.getMe_id()%>"> 
+										<img src="/single/images/mail.png" style="width: 20px">
+									</a>
+									<%
+										}
+									%>
 								</div>
-								<a href="#" data-toggle="modal"
-									data-target="#MessageModal<%=post.getMe_id()%>"> <img
-									src="/single/images/mail.png" style="width: 20px">
-								</a>
 							</div>
 							<div class="detail-attr detail-date">
 								<div class="detail-name">작성일</div>
